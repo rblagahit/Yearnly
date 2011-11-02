@@ -7,10 +7,10 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width" />
 	<title>Yearnly</title>
-	<link rel="stylesheet" href="stylesheets/foundation.css">
-	<link rel="stylesheet" href="stylesheets/app.css">
+	<link rel="stylesheet" href="_assets/stylesheets/foundation.css">
+	<link rel="stylesheet" href="_assets/stylesheets/app.css">
 	<!--[if lt IE 9]>
-		<link rel="stylesheet" href="stylesheets/ie.css">
+		<link rel="stylesheet" href="_assets/stylesheets/ie.css">
 	<![endif]-->
 	<!-- IE Fix for HTML5 Tags -->
 	<!--[if lt IE 9]>
@@ -27,7 +27,7 @@
 		</div>
 		
 		<div class="row">
-			<div class="six columns">
+			<div class="five columns offset-by-one">
 				<h3>Log In</h3>
 				<form id="login" method="" action="">
 					<fieldset>
@@ -35,11 +35,11 @@
 						<input type="text" class="oversize input-text" id="email" name="email" />
 						<label for="password">Password</label>
 						<input type="password" class="oversize input-text" id="password" name="password" />
-						<input type="submit" value="Log In" />
+						<input type="submit" class="nice medium blue button radius" value="Log In" />
 					</fieldset>
 				</form>
 			</div>
-			<div class="six columns">
+			<div class="five columns">
 				<h3>Sign Up</h3>
 				<form id="signup" method="" action="">
 					<fieldset>
@@ -49,14 +49,13 @@
 						<input type="text" class="oversize input-text" id="name" name="name" />
 						<label for="password">Password</label>
 						<input type="password" class="oversize input-text" id="password" name="password" />
-						<input type="submit" value="Sign Up
-						" />
+						<input type="submit" class="nice medium red button radius" value="Sign Up" />
 					</fieldset>
 				</form>
 			</div>
 		</div>
 	</div>
-	<script src="javascripts/foundation.js"></script>
-	<script src="javascripts/app.js"></script>
+	<script src="_assets/javascripts/foundation.js"></script>
+	<script src="_assets/javascripts/app.js"></script>
 </body>
 </html>
