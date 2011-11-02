@@ -9,11 +9,16 @@ class User{
 	
 	public $db;
 	
-	public __construct($id = NULL){
-		$this->db = new Database("test");
-		if($id != NULL){
-			//Load User info
+	public __construct($argData = NULL){
+		$this->db = new Database("Yearnly");
+		if($argData != NULL){
+			$this->userName = $_POST["username"];
+			$this->passWord = $_POST["password"];
 		}
+	}
+	
+	private AuthenticateUser(){
+		
 	}
 }
 ?>
