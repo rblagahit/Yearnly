@@ -29,7 +29,7 @@
 		<div class="row">
 			<div class="five columns offset-by-one">
 				<h3>Log In</h3>
-				<form id="login" method="" action="">
+				<form id="login" method="post" action="home.php">
 					<fieldset>
 						<label for="email">Email</label>
 						<input type="text" class="oversize input-text" id="email" name="email" />
@@ -41,7 +41,7 @@
 			</div>
 			<div class="five columns">
 				<h3>Sign Up</h3>
-				<form id="signup" method="" action="">
+				<form id="signup" method="post" action="signup.php">
 					<fieldset>
 						<label for="email">Email</label>
 						<input type="text" class="oversize input-text" id="email" name="email" />
