@@ -1,1 +1,2 @@
 ## Yearnly is an online wish list.
+## Important login form and signup form inputs must *always* be named "email" "password" and the optional "name" (for sign up)

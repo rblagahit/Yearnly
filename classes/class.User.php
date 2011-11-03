@@ -12,6 +12,7 @@ class User{
 	public $db;
 	
 	public function __construct($argData = NULL){
+		session_start();
 		$this->db = new Database("Yearnly");
 		if($argData != NULL){
 			if(isset($_POST["name"])){
@@ -30,15 +31,21 @@ class User{
 	}
 	
 	private function AuthenticateUser(){
-		$query = "select id from Users where username = '$this->username' AND password = '$this->password';";
+		$query = "select * from Users where email = '$this->email' AND password = '$this->password';";
 		$userData = $this->db->query($query);
 		if($userData){
 			$this->isauthenticated = true;
 			$this->id = $userData["id"];
+			$this->name = $userData["name"];
+			$this->username = $userData["username"];
+			$_SESSION["userid"] = $this->id;
+			$_SESSION["name"] = $this->name;
+			$_SESSION["email"] = $this->email;
+			$_SESSION["username"] = $this->username;
 		}
 	}
 	
-	public function InsertUser(){
+	private function InsertUser(){
 		$insertQuery = "INSERT INTO Users (email,name,password) VALUES ('$this->email', '$this->name', '$this->password');";
 		if($this->db->insert($insertQuery)){
 			return true;

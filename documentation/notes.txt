@@ -1,0 +1,10 @@
+1. Session variables that I will make available when a user logs in:
+	1. userid
+	2. username
+	3. email
+	4. name
+	There will be others added as we move forward.  
+	
+	You can access these in php by doing $_SESSION["userid"] for the userid.
+	
+	Note: All session variables will be available anytime you create a new user object.  Ex. $user = new User($_POST);
