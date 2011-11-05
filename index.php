@@ -16,6 +16,8 @@
 	<!--[if lt IE 9]>
 		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
+	<script src="_assets/javascripts/Helper.js" type="text/javascript"></script>
 </head>
 <body>
 	<div class="container">
@@ -44,12 +46,12 @@
 				<form id="signup" method="post" action="signup.php">
 					<fieldset>
 						<label for="email">Email</label>
-						<input type="text" class="oversize input-text" id="email" name="email" />
+						<input type="text" class="oversize input-text signupemail" id="email" name="email" /><p class="errortext" id="emailchecker"></p>
 						<label for="name">Full Name</label>
 						<input type="text" class="oversize input-text" id="name" name="name" />
 						<label for="password">Password</label>
 						<input type="password" class="oversize input-text" id="password" name="password" />
-						<input type="submit" class="nice medium red button radius" value="Sign Up" />
+						<input type="submit" class="nice medium red button radius" value="Sign Up" id="signupbutton" />
 					</fieldset>
 				</form>
 			</div>

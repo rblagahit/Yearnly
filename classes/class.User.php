@@ -7,12 +7,13 @@ class User{
 	public $name;
 	public $password;
 	public $email;
-	public $isauthenticated; //BOOL
-	
-	public $db;
+	private $authenticated; //BOOL
+	public $errors;
+	private $db;
 	
 	public function __construct($argData = NULL){
 		session_start();
+		$this->errors = array();
 		$this->db = new Database("Yearnly");
 		if($argData != NULL){
 			if(isset($_POST["name"])){
@@ -20,7 +21,7 @@ class User{
 				$this->email = trim($_POST["email"]);
 				$this->password = trim(sha1($_POST["password"]));
 				$this->name = trim($_POST["name"]);
-				$this->isauthenticated = $this->InsertUser();
+				$this->authenticated = $this->InsertUser();
 			}else{
 				//Log In user
 				$this->email = trim($_POST["email"]);
@@ -34,7 +35,7 @@ class User{
 		$query = "select * from Users where email = '$this->email' AND password = '$this->password';";
 		$userData = $this->db->query($query);
 		if($userData){
-			$this->isauthenticated = true;
+			$this->authenticated = true;
 			$this->id = $userData["id"];
 			$this->name = $userData["name"];
 			$this->username = $userData["username"];
@@ -48,6 +49,15 @@ class User{
 	private function InsertUser(){
 		$insertQuery = "INSERT INTO Users (email,name,password) VALUES ('$this->email', '$this->name', '$this->password');";
 		if($this->db->insert($insertQuery)){
+			return true;
+		}else{
+			$this->errors[] = $this->db->mysql->error;
+			return false;
+		}
+	}
+	
+	public function IsAuthenticated(){
+		if($this->authenticated){
 			return true;
 		}else{
 			return false;
