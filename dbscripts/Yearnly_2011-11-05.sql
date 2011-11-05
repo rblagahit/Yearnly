@@ -7,7 +7,7 @@
 #
 # Host: localhost (MySQL 5.5.9)
 # Database: Yearnly
-# Generation Time: 2011-11-03 00:15:03 +0000
+# Generation Time: 2011-11-05 15:29:01 +0000
 # ************************************************************
 
 
@@ -31,8 +31,10 @@ CREATE TABLE `Users` (
   `password` varchar(50) NOT NULL DEFAULT '',
   `email` varchar(150) NOT NULL DEFAULT '',
   `name` varchar(255) NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 
 
 
