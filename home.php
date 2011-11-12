@@ -1,19 +1,10 @@
 <?php
-<<<<<<< HEAD
+
 require_once("classes/AutoLoader.php");
 
 $user = User::LoadUserById($_SESSION["userid"]);
 
 
-=======
-require_once("classes/class.User.php");
-$user = new User($_POST);
-if(!$user->IsAuthenticated()){
-	header("Location:error.php");
-}
-// echo "Below is how the session data is laid out:<br />";
-// print_r($_SESSION);
->>>>>>> 0b03dec1991584a8d2deff96b7212439af9ad210
 ?>
 <?php require_once('includes/html_head.php'); ?>
 
