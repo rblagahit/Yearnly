@@ -1,5 +1,5 @@
 <?php
-require_once("class.Database.php");
+require_once("Database.php");
 
 class User{
 	public $id;
@@ -21,7 +21,17 @@ class User{
 				$this->email = trim($_POST["email"]);
 				$this->password = trim(sha1($_POST["password"]));
 				$this->name = trim($_POST["name"]);
-				$this->authenticated = $this->InsertUser();
+				//Check for null email
+				if($_POST["email"] == NULL || trim($_POST["email"]) == ""){
+					$this->errors[] = "The email or password was empty.";					
+				}else{
+					//Check for null password
+					if($_POST["password"] == NULL || trim($_POST["password"] == "")){
+						$this->errors[] = "The email or password was empty.";
+					}else{
+						$this->authenticated = $this->InsertUser();
+					}
+				}
 			}else{
 				//Log In user
 				$this->email = trim($_POST["email"]);
