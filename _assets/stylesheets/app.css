@@ -13,7 +13,8 @@
    Shared Styles
 ----------------------------------------- */
 .errortext {color:red;}
-
+.inline {display:inline;}
+.move {cursor:move;}
 
 
 

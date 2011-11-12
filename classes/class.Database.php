@@ -4,7 +4,7 @@ class Database {
 	public $mysql;
 	
 	function __construct($db){
-		$this->mysql = new mysqli('localhost', 'root','root',$db) or die('There was a problem connecting to the db');
+		$this->mysql = new mysqli('localhost', 'root','',$db) or die('There was a problem connecting to the db');
 	
 	}
 	
