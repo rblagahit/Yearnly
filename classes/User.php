@@ -12,21 +12,20 @@ class User{
 	private $db;
 	
 	public function __construct($argData = NULL){
-		session_start();
 		$this->errors = array();
 		$this->db = new Database("Yearnly");
 		if($argData != NULL){
 			if(isset($_POST["name"])){
 				//New sign up
-				$this->email = trim($_POST["email"]);
-				$this->password = trim(sha1($_POST["password"]));
-				$this->name = trim($_POST["name"]);
+				$this->email = trim($argData["email"]);
+				$this->password = trim(sha1($argData["password"]));
+				$this->name = trim($argData["name"]);
 				//Check for null email
-				if($_POST["email"] == NULL || trim($_POST["email"]) == ""){
+				if($argData["email"] == NULL || trim($argData["email"]) == ""){
 					$this->errors[] = "The email or password was empty.";					
 				}else{
 					//Check for null password
-					if($_POST["password"] == NULL || trim($_POST["password"] == "")){
+					if($argData["password"] == NULL || trim($argData["password"] == "")){
 						$this->errors[] = "The email or password was empty.";
 					}else{
 						$this->authenticated = $this->InsertUser();
@@ -34,11 +33,22 @@ class User{
 				}
 			}else{
 				//Log In user
-				$this->email = trim($_POST["email"]);
-				$this->password = trim(sha1($_POST["password"]));
+				$this->email = trim($argData["email"]);
+				$this->password = trim(sha1($argData["password"]));
 				$this->AuthenticateUser();
 			}
 		}
+	}
+	
+	public static function LoadUserById($id){
+		$query = "select email, password from Users where id = '$id'";
+		$db = new Database("Yearnly");
+		$userData = $db->query($query);
+		if($userData){
+			return new User($userData);
+		}
+		
+		
 	}
 	
 	private function AuthenticateUser(){

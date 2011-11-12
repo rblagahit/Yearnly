@@ -1,10 +1,8 @@
 <?php
-require_once("classes/class.User.php");
-$user = new User($_POST);
-if(!$user->IsAuthenticated()){
-	header("Location:error.php");
-}
-echo "Below is how the session data is laid out:<br />";
-print_r($_SESSION);
+require_once("classes/AutoLoader.php");
+
+$user = User::LoadUserById($_SESSION["userid"]);
+
+
 ?>
 <h1>Logged in!</h1>

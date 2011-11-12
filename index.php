@@ -31,7 +31,7 @@
 		<div class="row">
 			<div class="five columns offset-by-one">
 				<h3>Log In</h3>
-				<form id="login" method="post" action="home.php">
+				<form id="login" method="post" action="authenticate.php">
 					<fieldset>
 						<label for="email">Email</label>
 						<input type="text" class="oversize input-text" id="email" name="email" />
