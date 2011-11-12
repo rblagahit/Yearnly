@@ -46,6 +46,8 @@ class User{
 		$userData = $db->query($query);
 		if($userData){
 			return new User($userData);
+		}else{
+			return null;
 		}
 		
 		
