@@ -37,6 +37,11 @@ $(document).ready(function() {
 		});
 	});
 	
+	$('.close').click(function(){
+		$(this).parent().slideUp(300);
+		return false;
+	});
+	
 	
 	/* PLACEHOLDER FOR FORMS ------------- */
 	/* Remove this and jquery.placeholder.min.js if you don't need :) */
