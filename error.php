@@ -1,3 +1,4 @@
 <?php
-echo "Generic error right now";
+$errors = $_GET["id"];
+print_r(base64_decode($errors));
 ?>
