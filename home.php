@@ -1,13 +1,18 @@
 <?php
-
 require_once("classes/AutoLoader.php");
-
-$user = User::LoadUserById($_SESSION["userid"]);
-
+if(isset($_SESSION["userid"])){
+	$user = User::LoadUserById($_SESSION["userid"]);
+	if($user == NULL){
+		header("Location:index.php");
+	}
+}else{
+	header("Location:index.php");
+}
+$page = new Page();
+echo $page->Html_Head();
+echo $page->Javascripts(); 
 
 ?>
-<?php require_once('includes/html_head.php'); ?>
-
 	<title>Yearnly</title>
 	
 </head>
@@ -16,6 +21,7 @@ $user = User::LoadUserById($_SESSION["userid"]);
 		<div class="row">
 			<div class="twelve columns">
 				<div class="five columns"><h1>Yearnly</h1></div>
+				<a href="logout.php" class="button red">Log Out</a>
 				<hr />
 			</div>
 		</div>
@@ -75,6 +81,5 @@ $user = User::LoadUserById($_SESSION["userid"]);
 			</ul>
 		</div>
 	</div>
-	<?php require_once('includes/javascripts.php'); ?>
 </body>
 </html>

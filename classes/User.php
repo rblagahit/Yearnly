@@ -45,7 +45,11 @@ class User{
 		$db = new Database("Yearnly");
 		$userData = $db->query($query);
 		if($userData){
-			return new User($userData);
+			$user = new User();
+			$user->email = trim($userData["email"]);
+			$user->password = trim($userData["password"]);
+			$user->AuthenticateUser();
+			return $user;
 		}else{
 			return null;
 		}
@@ -65,6 +69,8 @@ class User{
 			$_SESSION["name"] = $this->name;
 			$_SESSION["email"] = $this->email;
 			$_SESSION["username"] = $this->username;
+		}else{
+			$this->errors[] = "User not authenticated.";
 		}
 	}
 	
@@ -84,6 +90,14 @@ class User{
 		}else{
 			return false;
 		}
+	}
+	
+	public function GetErrorString(){
+		$errorString = "";
+		foreach($this->errors as $error){
+			$errorString .= $error."<br />";
+		}
+		return base64_encode($errorString);
 	}
 }
 ?>

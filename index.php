@@ -1,4 +1,9 @@
-<?php require_once('includes/html_head.php'); ?>
+<?php
+require_once("classes/AutoLoader.php");
+$page = new Page();
+echo $page->Html_Head();
+echo $page->Javascripts();
+?>
 
 	<title>Yearnly</title>
 	
@@ -41,6 +46,5 @@
 			</div>
 		</div>
 	</div>
-	<?php require_once('includes/javascripts.php'); ?>
 </body>
 </html>
