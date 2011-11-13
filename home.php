@@ -7,13 +7,12 @@ if(isset($_SESSION["userid"])){
 		header("Location:index.php?id=".$error);
 	}
 }else{
-	$error = base64_encode("User not authenticated.");
+	$error = base64_encode("No user logged in.");
 	header("Location:index.php?id=".$error);
 }
 $page = new Page();
 echo $page->Html_Head();
 echo $page->Javascripts(); 
-
 ?>
 	<title>Yearnly</title>
 	
@@ -39,6 +38,7 @@ echo $page->Javascripts();
 				<li class="active" id="profile_tab">
 					<div class="module" id="tagline">
 						<h4>Tagline</h4>
+						<p>Welcome, <?php echo $user->name; ?> (This is here for me to know who is logged in we can move this later)</p>
 						<div class="alert-box">
 							Tell everyone a little bit about yourself!
 							<a href="" class="close">&times;</a>

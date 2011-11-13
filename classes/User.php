@@ -58,7 +58,7 @@ class User{
 	}
 	
 	private function AuthenticateUser(){
-		$query = "select * from Users where email = '$this->email' AND password = '$this->password';";
+		$query = "select id, username, email, name from Users where email = '$this->email' AND password = '$this->password';";
 		$userData = $this->db->query($query);
 		if($userData){
 			$this->authenticated = true;
@@ -77,6 +77,7 @@ class User{
 	private function InsertUser(){
 		$insertQuery = "INSERT INTO Users (email,name,password) VALUES ('$this->email', '$this->name', '$this->password');";
 		if($this->db->insert($insertQuery)){
+			$_SESSION["userid"] = $this->db->GetLastId();
 			return true;
 		}else{
 			$this->errors[] = $this->db->mysql->error;

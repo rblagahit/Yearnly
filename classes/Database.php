@@ -57,6 +57,10 @@ class Database {
 	
 	}
 	
+	public function GetLastId(){
+		return $this->mysql->insert_id;
+	}
+	
 	function __destruct() {
     	// close out the database connection;
     	$this->mysql->close();

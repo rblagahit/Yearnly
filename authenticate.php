@@ -1,5 +1,6 @@
 <?php
 require_once("classes/AutoLoader.php");
+session_unset();
 $user = new User($_POST);
 if(!$user->IsAuthenticated()){
 	$error = base64_encode("Wrong email or password.");
