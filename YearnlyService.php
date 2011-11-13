@@ -1,6 +1,7 @@
 <?php
-require_once("../class.Database.php");
+require_once("classes/AutoLoader.php");
 $call = $_POST["call"];
+
 
 if($call == "dupcheck"){
 	//Email duplicate checker

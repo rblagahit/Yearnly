@@ -32,7 +32,7 @@ echo $page->Javascripts();
 			</div>
 			<div class="five columns">
 				<h3>Sign Up</h3>
-				<form id="signup" method="post" action="signup.php">
+				<form id="signup" method="post" action="authenticate.php">
 					<fieldset>
 						<label for="email">Email</label>
 						<input type="text" class="oversize input-text signupemail" id="email" name="email" /><p class="errortext" id="emailchecker"></p>
