@@ -1,5 +1,8 @@
 <?php
 require_once("classes/AutoLoader.php");
+if(isset($_GET["id"])){
+	echo base64_decode($_GET["id"]);
+}
 $page = new Page();
 echo $page->Html_Head();
 echo $page->Javascripts();

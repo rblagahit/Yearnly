@@ -3,10 +3,12 @@ require_once("classes/AutoLoader.php");
 if(isset($_SESSION["userid"])){
 	$user = User::LoadUserById($_SESSION["userid"]);
 	if($user == NULL){
-		header("Location:index.php");
+		$error = base64_encode("User not authenticated.");
+		header("Location:index.php?id=".$error);
 	}
 }else{
-	header("Location:index.php");
+	$error = base64_encode("User not authenticated.");
+	header("Location:index.php?id=".$error);
 }
 $page = new Page();
 echo $page->Html_Head();
