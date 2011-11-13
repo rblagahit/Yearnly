@@ -1,8 +1,7 @@
 $(function (){
 	$('.signupemail').blur(function(){
 		var useremail = $(this).val();
-		
-		$.post('classes/helpers/YearnlyService.php',
+		$.post('YearnlyService.php',
 			{ call: "dupcheck", email: useremail},
 			 function(data){
 			 	if(data == "true"){

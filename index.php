@@ -1,4 +1,12 @@
-<?php require_once('includes/html_head.php'); ?>
+<?php
+require_once("classes/AutoLoader.php");
+if(isset($_GET["id"])){
+	echo base64_decode($_GET["id"]);
+}
+$page = new Page();
+echo $page->Html_Head();
+echo $page->Javascripts();
+?>
 
 	<title>Yearnly</title>
 	
@@ -27,7 +35,7 @@
 			</div>
 			<div class="five columns">
 				<h3>Sign Up</h3>
-				<form id="signup" method="post" action="signup.php">
+				<form id="signup" method="post" action="authenticate.php">
 					<fieldset>
 						<label for="email">Email</label>
 						<input type="text" class="oversize input-text signupemail" id="email" name="email" /><p class="errortext" id="emailchecker"></p>
@@ -41,6 +49,5 @@
 			</div>
 		</div>
 	</div>
-	<?php require_once('includes/javascripts.php'); ?>
 </body>
 </html>
