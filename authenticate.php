@@ -1,11 +1,10 @@
 <?php
 require_once("classes/AutoLoader.php");
 session_unset();
-$user = new User($_POST);
-if(!$user->IsAuthenticated()){
-	header("Location:index.php?id=".$user->GetErrorString());
-}else{
+try{
+	$user = new User($_POST);
 	header("Location: home.php");
+}catch(Exception $e){
+	header("Location: index.php?id=".base64_encode($e->getMessage()));
 }
-
 ?>

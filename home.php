@@ -1,15 +1,17 @@
 <?php
 require_once("classes/AutoLoader.php");
+
 if(isset($_SESSION["userid"])){
-	$user = User::LoadUserById($_SESSION["userid"]);
-	if($user == NULL){
-		$error = base64_encode("User not authenticated.");
-		header("Location:index.php?id=".$error);
+	try{
+		$user = User::LoadUserById($_SESSION["userid"]);
+	}catch(Exception $e){
+		header("Location: index.php?id=".base64_encode($e->getMessage()));
 	}
 }else{
-	$error = base64_encode("No user logged in.");
-	header("Location:index.php?id=".$error);
+	$error = base64_encode("No user found.");
+	header("Location: index.php?id=".$error);
 }
+
 $page = new Page();
 echo $page->Html_Head();
 echo $page->Javascripts(); 

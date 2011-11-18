@@ -1,5 +1,6 @@
 <?php
 require_once("Database.php");
+require_once("UserLog.php");
 
 class User{
 	public $id;
@@ -8,7 +9,7 @@ class User{
 	public $password;
 	public $email;
 	private $authenticated; //BOOL
-	public $errors;
+	private $logUser; //BOOL to stop logging of the LoadUserById function
 	private $db;
 	
 	public function __construct($argData = NULL){
@@ -22,19 +23,20 @@ class User{
 				$this->name = trim($argData["name"]);
 				//Check for null email
 				if($argData["email"] == NULL || trim($argData["email"]) == ""){
-					$this->errors[] = "The email or password was empty.";					
+					throw new Exception("The email or password was empty.");					
 				}else{
 					//Check for null password
 					if($argData["password"] == NULL || trim($argData["password"] == "")){
-						$this->errors[] = "The email or password was empty.";
+						throw new Exception("The email or password was empty.");
 					}else{
-						$this->authenticated = $this->InsertUser();
+						$this->InsertUser();
 					}
 				}
 			}else{
 				//Log In user
 				$this->email = trim($argData["email"]);
 				$this->password = trim(sha1($argData["password"]));
+				$this->logUser = true;
 				$this->AuthenticateUser();
 			}
 		}
@@ -48,10 +50,11 @@ class User{
 			$user = new User();
 			$user->email = trim($userData["email"]);
 			$user->password = trim($userData["password"]);
+			$user->logUser = false;
 			$user->AuthenticateUser();
 			return $user;
 		}else{
-			return null;
+			throw new Exception("User not authenticated.");
 		}
 		
 		
@@ -69,8 +72,12 @@ class User{
 			$_SESSION["name"] = $this->name;
 			$_SESSION["email"] = $this->email;
 			$_SESSION["username"] = $this->username;
+			if($this->logUser){
+				$userLog = new UserLog($this->id);
+				$userLog->LogUser();
+			}
 		}else{
-			$this->errors[] = "User not authenticated.";
+			throw new Exception("User not authenticated");
 		}
 	}
 	
@@ -78,10 +85,11 @@ class User{
 		$insertQuery = "INSERT INTO Users (email,name,password) VALUES ('$this->email', '$this->name', '$this->password');";
 		if($this->db->insert($insertQuery)){
 			$_SESSION["userid"] = $this->db->GetLastId();
-			return true;
+			$userLog = new UserLog($_SESSION["userid"]);
+			$userLog->LogUser();
+			$this->authenticated = true;
 		}else{
-			$this->errors[] = $this->db->mysql->error;
-			return false;
+			throw new Exception("Error creating user account.");
 		}
 	}
 	
@@ -93,12 +101,5 @@ class User{
 		}
 	}
 	
-	public function GetErrorString(){
-		$errorString = "";
-		foreach($this->errors as $error){
-			$errorString .= $error."<br />";
-		}
-		return base64_encode($errorString);
-	}
 }
 ?>
