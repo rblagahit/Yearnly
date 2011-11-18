@@ -18,8 +18,10 @@ class UserLog{
 	
 	public function LogUser(){
 		$this->db = new Database("Yearnly");
-		$query = "INSERT INTO UserLog (userid, ipaddress, logindate) VALUES ('$this->userid', '$this->ipaddress' , '$this->logindate');";
-		$this->db->insert($query);
+		if(isset($this->userid)){
+			$query = "INSERT INTO UserLog (userid, ipaddress, logindate) VALUES ('$this->userid', '$this->ipaddress' , '$this->logindate');";
+			$this->db->insert($query);
+		}
 	}
 	
 
