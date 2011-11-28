@@ -8,3 +8,9 @@
 	You can access these in php by doing $_SESSION["userid"] for the userid.
 	
 	Note: All session variables will be available anytime you create a new user object.  Ex. $user = new User($_POST);
+	
+2. User authentication goes through authenticate.php and it just passes the post data to the user class and the user class handles all the input and will throw exceptions accordingly.
+
+3. The User class has a log boolean that will tell the user class whether or not to log the login of the user in the DB.  The reason the boolean is there is because a new user is created when you authenticate as well as when you go to the home.php page so I didn't want to log the login twice.
+
+4. The Autoloader file is where the session is started. This was because all pages will have to include the autoloader to load the classes so it was the safest place to put the session_start(); so I know that the session variables will be available.

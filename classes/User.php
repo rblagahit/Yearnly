@@ -39,6 +39,8 @@ class User{
 				$this->logUser = true;
 				$this->AuthenticateUser();
 			}
+		}else{
+			throw new Exception("No user data input");
 		}
 	}
 	
